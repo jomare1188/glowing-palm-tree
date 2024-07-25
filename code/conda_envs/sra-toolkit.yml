@@ -1,0 +1,37 @@
+name: sra-toolkit
+channels:
+  - bioconda
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - _openmp_mutex=5.1=1_gnu
+  - icu=58.2=he6710b0_3
+  - libgcc-ng=11.2.0=h1234567_1
+  - libgomp=11.2.0=h1234567_1
+  - libiconv=1.16=h5eee18b_3
+  - libstdcxx-ng=11.2.0=h1234567_1
+  - libxml2=2.9.14=h74e7548_0
+  - ncbi-ngs-sdk=2.11.2=hff44eed_0
+  - perl=5.26.2=h14c3975_0
+  - perl-app-cpanminus=1.7044=pl526_1
+  - perl-business-isbn=3.004=pl526_0
+  - perl-business-isbn-data=20140910.003=pl526_0
+  - perl-carp=1.38=pl526_3
+  - perl-constant=1.33=pl526_1
+  - perl-data-dumper=2.173=pl526_0
+  - perl-encode=2.88=pl526_1
+  - perl-exporter=5.72=pl526_1
+  - perl-extutils-makemaker=7.36=pl526_1
+  - perl-file-path=2.16=pl526_0
+  - perl-file-temp=0.2304=pl526_2
+  - perl-mime-base64=3.15=pl526_1
+  - perl-parent=0.236=pl526_1
+  - perl-uri=1.76=pl526_0
+  - perl-xml-libxml=2.0132=pl526h7ec2d77_1
+  - perl-xml-namespacesupport=1.12=pl526_0
+  - perl-xml-sax=1.02=pl526_0
+  - perl-xml-sax-base=1.09=pl526_0
+  - perl-xsloader=0.24=pl526_0
+  - sra-tools=2.10.0=pl526he1b5a44_0
+  - xz=5.4.6=h5eee18b_1
+  - zlib=1.2.13=h5eee18b_1
