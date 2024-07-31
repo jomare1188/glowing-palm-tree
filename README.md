@@ -46,24 +46,27 @@ complete list of accession in accessions directory
 The analysis was performed using the following steps:
 1. Preprocessing of gene expression data.
     - Download sequences using sra-toolkit (sra-tools 2.10.0)
-    - bbduk: remove poor quality sequences shor sequences and remove rRNA (bbmap 38.84)
-    - Read mapping in Sorghum and Sugarcane pantranscriptomes references (transcript of longest cds per orthogroup) ( salmon 0.12.0)
+    - bbduk: remove poor quality sequences short sequences and remove rRNA (bbmap 38.84)
+    - Read mapping salmon (v1.10.2) in Sorghum and Sugarcane pantranscriptomes references (transcript of longest cds per orthogroup) ( salmon 0.12.0)
 
 There is a snakefile for this steps in snakefile_preprocessing.py, download_sra.sh launches snakefile in SLURM type system.
 get_results.sh is useful to join the salmon data
 plot_quant.r is useful to take the results of get_results.sh and plot the quantfification data
 
-There is a snakefile for this steps in snakefile_preprocessing.py
-
 2. Data normalization
-    - Load quantification data and plot exploratory PCA of vst transformed data (pca_for_rnaseq.r)
+    - Load quantification dsalmon (v1.10.2)ata and plot exploratory PCA of vst transformed data (pca_for_rnaseq.r)
     - Correct for batch effects using RUVr from RUVseq package (RUV.r) (https://bioconductor.org/packages/release/bioc/vignettes/RUVSeq/inst/doc/RUVSeq.html)
 
 3. Construction of gene coexpression networks.
+    - filter low expressed data
+ 
 4. Module detection and correlation analysis.
 5. Comparative analysis of the networks to identify conserved and unique coexpression modules.
 
 ## Results
+
+We download a total of 14122223702 raw sequences, 6651867490 from sorghum and 7470356212 from sugarcane, after removing poor quality, rRNA, very short sequences and mapping with salmon against pan-transcriptome references we got 10698352940 sequences (75.6% of total download sequences, 84.5% sorghum and 68.0% for sugarcane), see table and plots in bbduk results. 
+
 Sorghum quantification
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/quant/quant_sorghum.png?raw=true)
 
