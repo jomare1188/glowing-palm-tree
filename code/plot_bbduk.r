@@ -37,8 +37,8 @@ ggsave(filename = "bbduk_removed_seqs_sugarcane.png", device = "png", units = "i
 
 
 #make big pretty table with all preprocessing
-sugarcane <- read.table("pretty_table_bbduk.csv", col.names = c("Accession", "Genotype", "Total", "bbduk_removed", "bbduk_percentage_removed"), header = F, sep = ",")
-sorghum <- read.table("pretty_sorghum_table_bbduk.csv", col.names = c("Accession", "Genotype", "Total", "bbduk_removed", "bbduk_percentage_removed"), header = F, sep = ",")
+sugarcane <- read.table("../results/bbduk/pretty_table_bbduk.csv", col.names = c("Accession", "Genotype", "Total", "bbduk_removed", "bbduk_percentage_removed"), header = F, sep = ",")
+sorghum <- read.table("../results/bbduk/pretty_sorghum_table_bbduk.csv", col.names = c("Accession", "Genotype", "Total", "bbduk_removed", "bbduk_percentage_removed"), header = F, sep = ",")
 
 sugarcane$Species <- "Sugarcane"
 sorghum$Species <- "Sorghum"
@@ -56,7 +56,7 @@ merged_sugarcane <- merge(sugarcane, salmon_sugarcane, by = c("Accession", "Geno
 merged_sorghum <- merge(sorghum, salmon_sorghum, by = c("Accession", "Genotype", "Species"))
 
 
-merged_sugarcane <- merged_sugarcane %>% mutate(salmon_remaining = (bbduk_remaining*salmon_mapped_percentage_respect_bbduk)/100) %>% mutate(final_percentage_remaining_respect_total = 100*(salmon_remaining/Total))
+merged_sugarcane <- merged_sugarcane %>% mutate(salmon_remaining = round(bbduk_remaining*salmon_mapped_percentage_respect_bbduk/100)) %>% mutate(final_percentage_remaining_respect_total = round(100*(salmon_remaining/Total),4))
 merged_sorghum <- merged_sorghum %>% mutate(salmon_remaining = (bbduk_remaining*salmon_mapped_percentage_respect_bbduk)/100) %>% mutate(final_percentage_remaining_respect_total = 100*(salmon_remaining/Total))
 
 final <- rbind(merged_sugarcane, merged_sorghum)
