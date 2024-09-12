@@ -1,0 +1,24 @@
+GO.ID,Term,Annotated,Significant,Expected,Classic,p.adj
+GO:0010476,gibberellin mediated signaling pathway,25,14,5.54,0.00024,0.0029
+GO:0009740,gibberellic acid mediated signaling path...,20,12,4.43,0.00028,0.0029
+GO:0009937,regulation of gibberellic acid mediated ...,13,9,2.88,0.00038,0.0029
+GO:0036092,phosphatidylinositol-3-phosphate biosynt...,19,10,4.21,0.00355,0.0099
+GO:0071496,cellular response to external stimulus,110,37,24.38,0.00372,0.0099
+GO:0033993,response to lipid,436,120,96.65,0.00447,0.0099
+GO:0010138,pyrimidine ribonucleotide salvage,14,8,3.1,0.00473,0.0099
+GO:0032262,pyrimidine nucleotide salvage,14,8,3.1,0.00473,0.0099
+GO:0044206,UMP salvage,14,8,3.1,0.00473,0.0099
+GO:1901566,organonitrogen compound biosynthetic pro...,2098,510,465.08,0.00656,0.0099
+GO:0042594,response to starvation,103,34,22.83,0.00728,0.0099
+GO:0009739,response to gibberellin,60,22,13.3,0.00747,0.0099
+GO:1902047,polyamine transmembrane transport,7,5,1.55,0.00747,0.0099
+GO:0006888,endoplasmic reticulum to Golgi vesicle-m...,168,51,37.24,0.00815,0.0099
+GO:0008655,pyrimidine-containing compound salvage,15,8,3.33,0.00818,0.0099
+GO:0043173,nucleotide salvage,40,16,8.87,0.00837,0.0099
+GO:0046907,intracellular transport,1125,282,249.39,0.00909,0.0099
+GO:0051649,establishment of localization in cell,1169,292,259.14,0.00966,0.0099
+GO:0006534,cysteine metabolic process,44,17,9.75,0.00992,0.0099
+GO:0000820,regulation of glutamine family amino aci...,5,4,1.11,0.00992,0.0099
+GO:0006863,purine nucleobase transport,5,4,1.11,0.00992,0.0099
+GO:1904823,purine nucleobase transmembrane transpor...,5,4,1.11,0.00992,0.0099
+GO:2000214,regulation of proline metabolic process,5,4,1.11,0.00992,0.0099

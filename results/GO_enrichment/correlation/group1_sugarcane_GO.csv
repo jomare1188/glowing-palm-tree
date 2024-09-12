@@ -1,0 +1,7 @@
+GO.ID,Term,Annotated,Significant,Expected,Classic,p.adj
+GO:0006694,steroid biosynthetic process,125,4,0.56,0.0024,0.0064
+GO:0016128,phytosteroid metabolic process,72,3,0.32,0.0041,0.0064
+GO:0016129,phytosteroid biosynthetic process,72,3,0.32,0.0041,0.0064
+GO:0008202,steroid metabolic process,147,4,0.66,0.0043,0.0064
+GO:0098542,defense response to other organism,881,10,3.94,0.0058,0.007
+GO:0080156,mitochondrial mRNA modification,32,2,0.14,0.0090,0.009

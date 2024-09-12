@@ -1,0 +1,42 @@
+GO.ID,Term,Annotated,Significant,Expected,Classic,p.adj
+GO:0044210,'de novo' CTP biosynthetic process,18,9,2.55,0.00032,0.0083
+GO:0110095,cellular detoxification of aldehyde,23,10,3.25,0.00061,0.0083
+GO:0110096,cellular response to aldehyde,23,10,3.25,0.00061,0.0083
+GO:0030041,actin filament polymerization,33,12,4.67,0.00123,0.009
+GO:0044550,secondary metabolite biosynthetic proces...,144,34,20.36,0.00154,0.009
+GO:0030833,regulation of actin filament polymerizat...,18,8,2.55,0.00184,0.009
+GO:0006952,defense response,842,148,119.06,0.00243,0.009
+GO:0006950,response to stress,2290,368,323.81,0.00265,0.009
+GO:0006556,S-adenosylmethionine biosynthetic proces...,3,3,0.42,0.00282,0.009
+GO:0019856,pyrimidine nucleobase biosynthetic proce...,36,12,5.09,0.00288,0.009
+GO:0009636,response to toxic substance,241,50,34.08,0.00305,0.009
+GO:0007015,actin filament organization,134,31,18.95,0.00337,0.009
+GO:0051258,protein polymerization,56,16,7.92,0.00374,0.009
+GO:0030837,negative regulation of actin filament po...,16,7,2.26,0.00397,0.009
+GO:0031333,negative regulation of protein-containin...,16,7,2.26,0.00397,0.009
+GO:0032272,negative regulation of protein polymeriz...,16,7,2.26,0.00397,0.009
+GO:0051494,negative regulation of cytoskeleton orga...,16,7,2.26,0.00397,0.009
+GO:1902904,negative regulation of supramolecular fi...,16,7,2.26,0.00397,0.009
+GO:0008064,regulation of actin polymerization or de...,21,8,2.97,0.00577,0.0099
+GO:0030832,regulation of actin filament length,21,8,2.97,0.00577,0.0099
+GO:0032271,regulation of protein polymerization,21,8,2.97,0.00577,0.0099
+GO:0030036,actin cytoskeleton organization,145,32,20.5,0.00622,0.0099
+GO:0009611,response to wounding,69,18,9.76,0.00629,0.0099
+GO:0050896,response to stimulus,3944,606,557.69,0.00637,0.0099
+GO:0098754,detoxification,221,45,31.25,0.00677,0.0099
+GO:1901804,beta-glucoside metabolic process,10,5,1.41,0.00763,0.0099
+GO:0030029,actin filament-based process,147,32,20.79,0.00767,0.0099
+GO:0042255,ribosome assembly,50,14,7.07,0.00785,0.0099
+GO:0046112,nucleobase biosynthetic process,50,14,7.07,0.00785,0.0099
+GO:0090174,organelle membrane fusion,76,19,10.75,0.00828,0.0099
+GO:0030834,regulation of actin filament depolymeriz...,14,6,1.98,0.00861,0.0099
+GO:0030835,negative regulation of actin filament de...,14,6,1.98,0.00861,0.0099
+GO:0051693,actin filament capping,14,6,1.98,0.00861,0.0099
+GO:1901879,regulation of protein depolymerization,14,6,1.98,0.00861,0.0099
+GO:1901880,negative regulation of protein depolymer...,14,6,1.98,0.00861,0.0099
+GO:0044419,biological process involved in interspec...,737,127,104.21,0.00915,0.0099
+GO:0042026,protein refolding,61,16,8.63,0.00916,0.0099
+GO:0002215,defense response to nematode,7,4,0.99,0.00976,0.0099
+GO:1904276,regulation of wax biosynthetic process,7,4,0.99,0.00976,0.0099
+GO:1904278,positive regulation of wax biosynthetic ...,7,4,0.99,0.00976,0.0099
+GO:0042221,response to chemical,1427,232,201.78,0.00991,0.0099
