@@ -23,7 +23,7 @@
 import pandas as pd
 import yaml
 
-sample_lists = pd.read_csv("sugarcane_accessions.txt", sep="\t")
+sample_lists = pd.read_csv("accessions/sugarcane_accessions.txt", sep="\t")
 genotypes = sample_lists["genotype"]
 samples = sample_lists["sample"]
 
@@ -33,8 +33,9 @@ rule all:
 #		[f"../data/{genotypes[i]}/1_raw_reads_in_fastq_format/{samples[i]}_2.fastq.gz" for i in range(len(genotypes))],
 #               [f"../data/{genotypes[i]}/2_trimmed/{samples[i]}_trimmed_1.fastq.gz" for i in range(len(genotypes))],
 #               [f"../data/{genotypes[i]}/2_trimmed/{samples[i]}_trimmed_2.fastq.gz" for i in range(len(genotypes))],
-		"/home/dmpachon/jorge/comparative_cane/data/salmon_index",
-		[f"../data/{genotypes[i]}/3_salmon_quant/{samples[i]}" for i in range(len(genotypes))]
+#		"/home/dmpachon/jorge/comparative_cane/data/scpan_longest_salmon_index",
+               "/home/dmpachon/jorge/comparative_cane/data/scpan_all_transcripts_salmon_index",
+		[f"../data/{genotypes[i]}/3_salmon_quant_all/{samples[i]}" for i in range(len(genotypes))]
 
 
 rule sra_fetch:
@@ -119,18 +120,18 @@ rule bbduk:
                 "minlength=50 qtrim=w trimq=20 tpe tbo 2> {log}"
 rule salmon_index:
         input:
-                transcriptome="../data/scpan_transcripts_of_longest_cds_per_OG.fasta"
+                transcriptome="/home/dmpachon/jorge/comparative_cane/data/all_transcripts_checked_with_cds.fasta"
         output:
-                salmon_index=directory("/home/dmpachon/jorge/comparative_cane/data/scpan_salmon_index")
+                salmon_index=directory("/home/dmpachon/jorge/comparative_cane/data/sugarcane_all_transcripts_salmon_index")
         params:
                 jobname="index",
-                mem="20gb",
+                mem="15gb",
                 partition="long"
         resources:
                 load=10
         conda:
                 "conda_envs/salmon.yml"
-        threads: 10
+        threads: 30
         log:
                 "logs/index_salmon.log"
         shell:
@@ -139,18 +140,18 @@ rule salmon_quant:
         input:
                 R1="../data/{genotype}/2_trimmed/{sample}_trimmed_1.fastq.gz",
                 R2="../data/{genotype}/2_trimmed/{sample}_trimmed_2.fastq.gz",
-                index="/home/dmpachon/jorge/comparative_cane/data/scpan_salmon_index"
+                index="/home/dmpachon/jorge/comparative_cane/data/sugarcane_all_transcripts_salmon_index"
         output:
-                salmon_out=directory("../data/{genotype}/3_salmon_quant/{sample}")
+                salmon_out=directory("../data/{genotype}/3_salmon_quant_all/{sample}")
         params:
                 jobname="quant",
-                mem="20gb",
+                mem="100gb",
                 partition="long"
         resources:
-                load=10
+                load=35
         conda:
                 "conda_envs/salmon.yml"
-        threads: 10
+        threads: 25
         log:
                 "logs/{genotype}_{sample}_salmon.log"
         shell:
@@ -163,4 +164,3 @@ rule salmon_quant:
 #            pretty_table="../results/pretty_table.csv"
 #        params:
 #                jobname=""
-

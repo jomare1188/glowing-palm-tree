@@ -26,7 +26,7 @@ sorghum_metadata$group <- ifelse((sorghum_metadata$Cultivar %in% sweet_genotypes
 #cane_metadata$group  <-  ifelse((cane_metadata$genotype %in% sugar_genotypes), "sugar", "fiber")
 
 
-sorghum_metadata_files = paste0("/home/dmpachon/jorge/comparative_cane/data/", pull(sorghum_metadata, "Cultivar"),"/3_salmon_quant/" ,pull(sorghum_metadata , "Run"), "/quant.sf")
+sorghum_metadata_files = paste0("/home/dmpachon/jorge/comparative_cane/data/", pull(sorghum_metadata, "Cultivar"),"/3_salmon_quant_longest/" ,pull(sorghum_metadata , "Run"), "/quant.sf")
 names(sorghum_metadata_files) = pull(sorghum_metadata, "Run")
 
 tx2gene = read.table(txgen2, sep = ",", col.names =c("transid","geneid"))
@@ -57,7 +57,7 @@ cv_row <- function(row) {
 
 cv <- apply(counts(raw), 1, cv_row)
 negative_control <- names(head(cv[order(cv)],1000))
-differences <- makeGroups(cane_metadata$genotype)
+differences <- makeGroups(sorghum_metadata$Cultivar)
 
 # RUVr
 # some magic
@@ -101,7 +101,7 @@ p <- p + theme(text = element_text(family = "Times New Roman", size=22),
 		panel.grid.major = element_blank(),
 		panel.grid.minor = element_blank(),
 		axis.line = element_line(colour = "black"))
-ggsave(p, filename = "../results/RUVr/sorghum/k1_RUVr_groups.png" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
+ggsave(p, filename = "../results/RUVr/sorghum_k1_RUVr_groups.png" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
 
 #
 #	theme_bw() +

@@ -1,21 +1,23 @@
 name: salmon
 channels:
-  - bioconda/label/cf201901
+  - bioconda
+  - conda-forge
   - defaults
 dependencies:
-  - _libgcc_mutex=0.1=main
-  - _openmp_mutex=5.1=1_gnu
-  - bzip2=1.0.8=h7b6447c_0
-  - icu=58.2=he6710b0_3
-  - jemalloc=5.2.1=h6a678d5_6
-  - libboost=1.73.0=h28710b8_12
-  - libgcc-ng=11.2.0=h1234567_1
-  - libgomp=11.2.0=h1234567_1
-  - libstdcxx-ng=11.2.0=h1234567_1
-  - lz4-c=1.9.4=h6a678d5_0
-  - salmon=0.12.0=h86b0361_1
-  - tbb=2020.2=hff7bd54_0
-  - xz=5.2.10=h5eee18b_1
-  - zlib=1.2.13=h5eee18b_0
-  - zstd=1.5.5=hc292b87_0
-prefix: /home/j/anaconda3/envs/salmon
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=2_gnu
+  - boost-cpp=1.78.0=h5adbc97_2
+  - bzip2=1.0.8=h7f98852_4
+  - icu=70.1=h27087fc_0
+  - libgcc-ng=13.2.0=h807b86a_2
+  - libgomp=13.2.0=h807b86a_2
+  - libhwloc=2.9.1=hd6dc26d_0
+  - libiconv=1.17=h166bdaf_0
+  - libjemalloc=5.3.0=hcb278e6_0
+  - libstdcxx-ng=13.2.0=h7e041cc_2
+  - libxml2=2.10.3=hca2bb57_4
+  - libzlib=1.2.13=hd590300_5
+  - salmon=1.10.2=hecfa306_0
+  - tbb=2021.9.0=hf52228f_0
+  - xz=5.2.6=h166bdaf_0
+  - zstd=1.5.5=hfc55251_0

@@ -1,7 +1,6 @@
 ## variables
 cores = 1
 # set working directory
-setwd(wd)
 
 ## install packages
 # install.packages(c("BiocManager","backports","tidyverse"),
@@ -40,8 +39,8 @@ get_full_trans_count_matrixes <- function(metadata, txgen2) {
 	sample_table <- separated_wider
 
         # load files paths
-#       sample_files = paste0("/home/dmpachon/jorge/comparative_cane/data/", pull(sample_table, "genotype"),"/3_salmon_quant/" ,pull(sample_table , "SampleID"), "/quant.sf")
-	sample_files = paste0("/home/dmpachon/jorge/comparative_cane/data/", pull(sample_table, "Cultivar"),"/3_salmon_quant/" ,pull(sample_table , "Run"), "/quant.sf")
+#       sample_files = paste0("/home/dmpachon/jorge/comparative_cane/data/", pull(sample_table, "genotype"),"/3_salmon_quant_longest/" ,pull(sample_table , "SampleID"), "/quant.sf")
+	sample_files = paste0("/home/dmpachon/jorge/comparative_cane/data/", pull(sample_table, "Cultivar"),"/3_salmon_quant_longest/" ,pull(sample_table , "Run"), "/quant.sf")
         # name table columns
 #       names(sample_files) = pull(sample_table, "SampleID")
 	names(sample_files) = pull(sample_table, "Run")
@@ -62,8 +61,8 @@ get_full_trans_count_matrixes <- function(metadata, txgen2) {
         vst <- varianceStabilizingTransformation(data)
         df_data <- assay(raw)
         df_vst <- assay(vst)
-        write.table(df_data, file = paste0("../results/", "sorghum_raw_counts.tsv", sep = ""), sep = "\t" ,quote = F, col.names = T)
-        write.table(df_vst, file = paste0("../results/", "sorghum_vst_counts.tsv", sep = ""), sep = "\t" ,quote = F, col.names = T)
+        write.table(df_data, file = paste0("../results/", "cane_raw_counts.tsv", sep = ""), sep = "\t" ,quote = F, col.names = T)
+        write.table(df_vst, file = paste0("../results/", "cane_vst_counts.tsv", sep = ""), sep = "\t" ,quote = F, col.names = T)
 	# Make PCA with DESEQ2 function
 #	pca_data <- plotPCA(vst, intgroup = c("group", "genotype", "tissue", "ConditionDescription", "time"), returnData = TRUE)
 	pca_data <- plotPCA(vst, intgroup = c("group", "Cultivar", "tissue", "Age", "BioProject", "dev_stage"), returnData = TRUE)
@@ -72,11 +71,12 @@ get_full_trans_count_matrixes <- function(metadata, txgen2) {
 	# plot R color condition
 	colors = wes_palette("Darjeeling1",2 , type = "discrete")
 	# Plooot 
-	p <- ggplot(pca_data, aes(x = PC1, y = PC2, shape = as.factor(Cultivar),  color = as.factor(group.1)))
+	p <- ggplot(pca_data, aes(x = PC1, y = PC2, shape = as.factor(genotype),  color = as.factor(group.1)))
 #	p <- p + geom_jitter(aes(color = group), size = 3, show.legend = FALSE) +
-#	facet_wrap(~ ConditionDescription)
+	p <- p + facet_wrap(~ ConditionDescription)
 	p <- p + geom_point(size=3)
-	p <- p + labs(title = "sorghum", color="Group", shape = "Genotype" )
+	p <- p + scale_shape_manual(values = c(15,16,17,18,3,4,6))
+	p <- p + labs(title = "sugarcane", color="Group", shape = "Genotype" )
 	p <- p + xlab((paste0("PC1 : ", percentVar[1],"%")))
 	p <- p + ylab((paste0("PC2 : ", percentVar[2],"%")))
 #	p <- p + geom_text_repel(aes(label=name), size=2.5, max.overlaps = 20 )
@@ -88,7 +88,7 @@ get_full_trans_count_matrixes <- function(metadata, txgen2) {
                 panel.grid.minor = element_blank(),
                 axis.line = element_line(colour = "black"))
 
-ggsave(p, filename = "../results/pca_sorghum_group.png" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
+ggsave(p, filename = "../results/pca_sugarcane_facet.png" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
 
 }
 #get_full_gene_count_matrixes("./../data/metadata_complete.csv",  "/Storage/data1/jorge.munoz/good_t2gene/results/tx2gen_DESEQ.csv")

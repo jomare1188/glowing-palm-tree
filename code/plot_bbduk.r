@@ -46,7 +46,7 @@ sorghum$Species <- "Sorghum"
 sugarcane <- sugarcane %>% mutate(bbduk_remaining = Total - bbduk_removed)
 sorghum <- sorghum %>% mutate(bbduk_remaining = Total - bbduk_removed)
 
-salmon_sugarcane <- read.table("../results/quant/pretty_table_sugarcane.csv", col.names = c("Accession", "Genotype", "salmon_mapped_percentage_respect_bbduk"), header = F, sep = ",")
+salmon_sugarcane <- read.table("../results/quant/pretty_table_cane.csv", col.names = c("Accession", "Genotype", "salmon_mapped_percentage_respect_bbduk"), header = F, sep = ",")
 salmon_sorghum <- read.table("../results/quant/pretty_table_sorghum.csv", col.names = c("Accession", "Genotype", "salmon_mapped_percentage_respect_bbduk"), header = F, sep = ",")
 
 salmon_sugarcane$Species <- "Sugarcane"

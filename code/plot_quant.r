@@ -1,4 +1,4 @@
-raw <- read.table("pretty_table_sugarcane.csv", col.names = c("Accession", "Genotype", "Mapping"), header = F, sep = ",")
+raw <- read.table("pretty_table_cane.csv", col.names = c("Accession", "Genotype", "Mapping"), header = F, sep = ",")
 library(dplyr)
 library(ggplot2)
 
@@ -19,6 +19,6 @@ geom_boxplot()+
          axis.line = element_line(colour = "black")
   )
 
-ggsave(filename = "quant_sugarcane.svg", device = "svg", units = "in", width = 6.05*1.2, height = 3.75*1.2)
-ggsave(filename = "quant_sugarcane.png", device = "png", units = "in", width = 6.05*1.2, height = 3.75*1.2)
+ggsave(filename = "quant_cane.svg", device = "svg", units = "in", width = 6.05*1.2, height = 3.75*1.2)
+ggsave(filename = "quant_cane.png", device = "png", units = "in", width = 6.05*1.2, height = 3.75*1.2)
 
