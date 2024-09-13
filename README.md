@@ -115,7 +115,7 @@ Sorghum quantification
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/quant/quant_sorghum.png?raw=true)
 
 Sugarcane quantification
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/quant/quant_scane.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/quant/quant_cane.png?raw=true)
 
 3. Plot PCA for quant data
 PCA for sorghum
