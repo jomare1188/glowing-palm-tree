@@ -47,17 +47,17 @@ The analysis was performed using the following steps:
 1. Preprocessing of gene expression data.
     - Download sequences using sra-toolkit (sra-tools 2.10.0)
     - bbduk: remove poor quality sequences short sequences and remove rRNA (bbmap 38.84)
-    - Read mapping salmon (v1.10.2) in Sorghum and Sugarcane pantranscriptomes references (transcript of longest cds per orthogroup) ( salmon 0.12.0)
+    - Read mapping salmon (v1.10.2) in Sorghum and Sugarcane pantranscriptomes references (transcript of longest cds per orthogroup)
 
-There is a snakefile for this steps in snakefile_preprocessing.py, download_sra.sh launches snakefile in SLURM type system.
+There is a snakefile for this steps in snakefile_preprocessing.py, run_snakemake.sh launches snakefile in SLURM type system.
 plot_quant.r is useful to take the results of get_results.sh and plot the quantfification data
 get_bbduk_results.sh is useful to join bbduk results
 plot_bbduk can plot the results from get_bbduk_results.sh
 
 
 
-2. Data Quantification
-    - salmon (v1.10.2)ata and plot exploratory PCA of vst transformed data (pca_for_rnaseq.r)
+2. Quantification
+    - salmon (v1.10.2) and plot exploratory PCA of vst transformed data (pca_for_rnaseq.r)
     - get_results.sh collect salmon results
     - plot_quant.r plot salmon results
 
@@ -81,8 +81,8 @@ plot_bbduk can plot the results from get_bbduk_results.sh
 
 8. Annotate data
     - run_Panzzer2.sh assing GO to proteins
-    - run_tf.sh run hmmer to find TF proteind domais
-    - assign_family_membership.pl make table with tf annotations from run_tf.sh
+    - run_tf.sh run hmmer to find TF proteind domais (ref) pfam 37
+    - assign_family_membership.pl make table with tf annotations from run_tf.sh (ref)
 
 9. Get orthologues
     - run_orthofinder.sh find othologues with orthofinder (2.5.4) on sugcarcane, sorghum, maize and rice proteins.
@@ -96,12 +96,20 @@ plot_bbduk can plot the results from get_bbduk_results.sh
     - compare_modules.r make overrepresentation analyisis of groups genes of modules correlated to sugar-fiber trait
 
 12. Compare the correlated modules in sugarcane and sorghum
-    - compare_modules.r Detect orthologues genes in correlated modules in sugarcane and sorghum
+    - compare_modules.r Detect orthologues genes in correlated modules in sugarcane and sorghum and the expression group in which they are
     - compare_modules.r Detect transcription factors in orthologues genes correlated to sugar-fiber trait in sorghum and sugarcane
 
 ## Results
 
-We download a total of 14122223702 raw sequences, 6651867490 from sorghum and 7470356212 from sugarcane, after removing poor quality, rRNA, very short sequences and mapping with salmon against pan-transcriptome references we got 10698352940 sequences (75.6% of total download sequences, 84.5% sorghum and 68.0% for sugarcane), see table and plots in bbduk results. 
+1. Preprocessing of gene expression data
+
+    - We downloaded a total sequences 13043204134 from sorghum and 7470356212 from sugarcane, after removing poor quality, rRNA, very short sequences and mapping with salmon against pan-transcriptome references we got 90.66% sorghum and 82.9% for sugarcane. See full results in results/summary_cleaning.csv and results/bbduk/ . 
+
+2. Quantification
+
+    We identified 600891 genes for sugarcane and 327598 for sorghum
+
+    - See results/quant/pretty_table_cane.csv and results/quant/pretty_table_sorghum.csv
 
 Sorghum quantification
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/quant/quant_sorghum.png?raw=true)
@@ -109,21 +117,71 @@ Sorghum quantification
 Sugarcane quantification
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/quant/quant_scane.png?raw=true)
 
-Raw PCA for sorghum
+3. Plot PCA for quant data
+PCA for sorghum
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/PCA/pca_sorghum_group.png?raw=true)
 
-Raw PCA For sugarcane
+ PCA For sugarcane
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/PCA/pca_sugarcane_group.png?raw=true)
 
-Raw facet PCA for sugarcane
+facet PCA for sugarcane
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/PCA/pca_sugarcane_facet.png?raw=true)
 
-Normalized PCA for sorghum - k1
+4. Correct for batch effects (RUVr)
+ PCA for sorghum - k1
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/RUVr/sorghum_k1_RUVr_groups.png?raw=true)
 
-Normalized PCA for sugarcane - k2
+ PCA for sugarcane - k2
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/RUVr/sugarcane_k2_RUVr_groups.png?raw=true)
 
-Count matrixes: Matrices directory 
+after batch effects correction we ended up with 147418 genes in sugarcane and 76309 in sorghum
+
+5. Make network
+
+Correlations distribution in Sugarcane 	
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/networks/histogram_sugarcane_cor_.png?raw=true)
+
+Correlations distribution in Sorghum
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/networks/histogram_sorghum_cor_.png?raw=true)
+
+6. Find modules
+
+   - See modules in results/networks/mcl_cane_p0.6_i2.7.mcl.formated.csv for sugarcane and results/networks/mcl_p0.6_i2.7.mcl.formated.csvfor sorghum
+
+7. Correlation analysis for modules
+   - Table for correlated modules for sugarcane results/networks/cor_sugarcane_sweet_rho80_padj001.csv and for sorghum results/correlation_analysis/cor_sorghum_sweet_rho80_padj001.csv
+
+8. Annotate data 
+   - GO annotations: For sugarcane data/GO_sugarcane/GO_cane_formated.txt, for sorghum results/panzzer/GO_formated.txt
+   - Transcription factors annotation: For sugarcane results/tf_annot/tf_class_sugarcane.txt and for sorghum results/tf_annot/tf_class_sorghum.txt
+
+9. Orthofinder results
+   - See results/orthofinder/Results_Aug30/Orthogroups/Orthogroups.tsv
+
+10. Make heatmaps of expression data
+ 
+Sorghum correated modules eigengene
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/heatmap_sorghum_eigen_cor_mod_sweet.png?raw=true)
+
+Sugarcane correlated modules eigengene
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/heatmap_sugarcane_eigen_cor_mod_sweet.png?raw=true)
+
+11. Enrichment analysis
+    - Enrichment analysis for sorghum modules: results/GO_enrichment/sugarcane/modules, for sorghum: /home/dmpachon/jorge/comparative_cane/results/GO_enrichment/sorghum/modules
+
+for gene group 1 in sorghum
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group1_sorghum_GO.png?raw=true)
+
+for gene group 2 in sorghum
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group2_sorghum_GO.png?raw=true)
+
+for gene group 1 in sugarcane
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group1_sugarcane_GO.png?raw=true)
+
+for gene group 2 in sugarcane
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group2_sugarcane_GO.png?raw=true)
+
+12. Compare the correlated modules in sugarcane and sorghum
+
 ## Installation
 You can find yml configuration files for conda envs in conda_envs directory
