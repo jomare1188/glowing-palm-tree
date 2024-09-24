@@ -70,7 +70,7 @@ result_comparative_tf <- full_cor_tf_OG_table %>%
 ## read matrices from expression patterns of eigengene of modules correlated to sweet - fiber in sugarcane and sorghum
 
 eigen_sorghum_mods <- read.table("../results/matrices/eigen_sorghum_cor_rho08.csv", row.names = 1, header = T, sep = ",") 
-eigen_cane_mods <- read.table("../results/matrices/eigen_cane_cor_rho08.csv", row.names = 1, header = T, sep = ",")
+eigen_cane_mods <- read.table("../results/matrices/eigen_sugarcane_cor_rho08.csv", row.names = 1, header = T, sep = ",")
 library(factoextra)
 df <- eigen_sorghum_mods
 

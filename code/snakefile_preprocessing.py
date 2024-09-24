@@ -145,13 +145,13 @@ rule salmon_quant:
                 salmon_out=directory("../data/{genotype}/3_salmon_quant_all/{sample}")
         params:
                 jobname="quant",
-                mem="100gb",
+                mem="200gb",
                 partition="long"
         resources:
                 load=35
         conda:
                 "conda_envs/salmon.yml"
-        threads: 25
+        threads: 40
         log:
                 "logs/{genotype}_{sample}_salmon.log"
         shell:
