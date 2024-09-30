@@ -3,28 +3,30 @@ library(ggplot2)
 library(dplyr)
 library(parallel)
 library(clusterProfiler)
-results_path_cluster <-"/home/dmpachon/jorge/comparative_cane/results/GO_enrichment/sugarcane/modules/"
+results_path_cluster <-"/home/dmpachon/jorge/comparative_cane/results/GO_enrichment/abs/sorghum/modules/"
 dir.create(results_path_cluster)
-numCores <- 30
+numCores <- 150
 ## read clusters size
 #number.clusters <- read.table("../results/networks/sorghum/mcl_p90_i2.7.mcl.formated_numbers.csv", header = F)
 
-GO <- read.table("/home/dmpachon/jorge/comparative_cane/data/GO_sugarcane/GO_cane_formated.txt", header=FALSE, stringsAsFactors=FALSE)
+GO <- read.table("/home/dmpachon/jorge/comparative_cane/results/panzzer/GO_formated.txt", header=FALSE, stringsAsFactors=FALSE)
+#/home/dmpachon/jorge/comparative_cane/data/GO_sugarcane/GO_cane_formated.txt
+#/home/dmpachon/jorge/comparative_cane/results/panzzer/GO_formated.txt
 
 # Rename columns if necessary (assuming your data has two columns)
 colnames(GO) <- c("Gene", "GO_term")
 
 # For cane
-ids_longest <- read.table("/home/dmpachon/jorge/comparative_cane/data/GO_sugarcane/ids_longest_protein_per_OG.txt",  col.names = "Gene")
-tmp <- GO %>% filter(Gene %in% ids_longest$Gene) 
-GO <- tmp
+#ids_longest <- read.table("/home/dmpachon/jorge/comparative_cane/data/GO_sugarcane/ids_longest_protein_per_OG.txt",  col.names = "Gene")
+#tmp <- GO %>% filter(Gene %in% ids_longest$Gene) 
+#GO <- tmp
 ###
 
 # Group by Gene and aggregate GO terms into a single string separated by spaces
 formatted_GO <- aggregate(GO_term ~ Gene, GO, function(x) paste(x, collapse=" "))
 gene2GO <- strsplit(formatted_GO$GO_term , " ") 
 names(gene2GO) <- formatted_GO$Gene
-dynamicMods <- read.table(file = "../results/networks/mcl_cane_p0.6_i2.7.mcl.formated.csv", header = F, row.names=1)
+dynamicMods <- read.table(file = "../results/networks/abs_mcl_p0.6_i2.7.mcl.formated.csv", header = F, row.names=1)
 colnames(dynamicMods) <- "module_No"
 geneNames <- rownames(dynamicMods)
 

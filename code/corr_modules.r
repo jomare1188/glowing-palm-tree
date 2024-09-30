@@ -1,9 +1,9 @@
-
 # files
-modules_path <- "../results/networks/mcl_cane_p0.6_i2.7.mcl.formated.csv"
+modules_path <- "../results/networks/abs_mcl_p0.6_i2.7.mcl.formated.csv"
+# "../results/networks/abs_mcl_cane_p0.6_i2.7.mcl.formated.csv"
 vst_path <- "../results/matrices/sugarcane_RUVr_k2_vst_counts.tsv"
+# "../results/matrices/sugarcane_RUVr_k2_vst_counts.tsv"
 metadata_path <-"../data/sugarcane_metadata.csv"
-
 
 #libraries
 library(tidyverse)
@@ -57,6 +57,6 @@ for (module in 1:max(modules$module_No)) {
 joined_results <- do.call(rbind, results_list)
 filtered_results <- joined_results %>% mutate(bonferroni = p.adjust(p, method = "bonferroni")) %>% select (Module, trait, rho, p, bonferroni) %>% filter( abs(rho) > 0.80 & bonferroni < 0.01)
 
-write.table(filtered_results, "../results/correlation_analysis/cor_sugarcane_sweet_rho80_padj001.csv", sep =  ",",  quote = F, row.names = F)
+write.table(filtered_results, "../results/correlation_analysis/abs_cor_sugarcane_sweet_rho80_padj001.csv", sep =  ",",  quote = F, row.names = F)
 
 

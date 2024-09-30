@@ -1,0 +1,7 @@
+GO.ID,Term,Annotated,Significant,Expected,Classic,p.adj
+GO:0009605,response to external stimulus,1309,12,3.4,0.00010,4e-04
+GO:0006952,defense response,1130,11,2.93,0.00012,4e-04
+GO:0010235,guard mother cell cytokinesis,3,1,0.01,0.00777,0.0078
+GO:0010440,stomatal lineage progression,3,1,0.01,0.00777,0.0078
+GO:0043419,urea catabolic process,3,1,0.01,0.00777,0.0078
+GO:1900037,regulation of cellular response to hypox...,3,1,0.01,0.00777,0.0078

@@ -1,6 +1,6 @@
 ### REFORMAT MODULES OUTPUT
 count=1
-file=../results/networks/mcl_cane_p0.6_i2.7.mcl
+file=../results/networks/abs_mcl_p0.6_i2.7.mcl
 rm ${file}.formated.csv
 
 for line in $(cat $file)

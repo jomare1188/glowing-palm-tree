@@ -1,0 +1,27 @@
+GO.ID,Term,Annotated,Significant,Expected,Classic,p.adj
+GO:0015851,nucleobase transport,10,7,1.87,0.00056,0.0078
+GO:0009739,response to gibberellin,60,22,11.21,0.00079,0.0078
+GO:0010138,pyrimidine ribonucleotide salvage,14,8,2.62,0.00150,0.0078
+GO:0032262,pyrimidine nucleotide salvage,14,8,2.62,0.00150,0.0078
+GO:0044206,UMP salvage,14,8,2.62,0.00150,0.0078
+GO:0008655,pyrimidine-containing compound salvage,15,8,2.8,0.00270,0.0092
+GO:0072531,pyrimidine-containing compound transmemb...,7,5,1.31,0.00341,0.0092
+GO:1902047,polyamine transmembrane transport,7,5,1.31,0.00341,0.0092
+GO:0036092,phosphatidylinositol-3-phosphate biosynt...,19,9,3.55,0.00413,0.0092
+GO:0033108,mitochondrial respiratory chain complex ...,26,11,4.86,0.00460,0.0092
+GO:0006863,purine nucleobase transport,5,4,0.93,0.00518,0.0092
+GO:1904823,purine nucleobase transmembrane transpor...,5,4,0.93,0.00518,0.0092
+GO:0071496,cellular response to external stimulus,110,32,20.55,0.00520,0.0092
+GO:0009069,serine family amino acid metabolic proce...,77,24,14.39,0.00572,0.0092
+GO:0006106,fumarate metabolic process,3,3,0.56,0.00652,0.0092
+GO:0009200,deoxyribonucleoside triphosphate metabol...,3,3,0.56,0.00652,0.0092
+GO:0009204,deoxyribonucleoside triphosphate catabol...,3,3,0.56,0.00652,0.0092
+GO:0042594,response to starvation,103,30,19.25,0.00655,0.0092
+GO:0033993,response to lipid,436,102,81.47,0.00739,0.0092
+GO:0010257,NADH dehydrogenase complex assembly,14,7,2.62,0.00790,0.0092
+GO:0032981,mitochondrial respiratory chain complex ...,11,6,2.06,0.00826,0.0092
+GO:0045892,negative regulation of DNA-templated tra...,131,36,24.48,0.00857,0.0092
+GO:1902679,negative regulation of RNA biosynthetic ...,131,36,24.48,0.00857,0.0092
+GO:0006518,peptide metabolic process,1079,232,201.61,0.00860,0.0092
+GO:0000380,alternative mRNA splicing, via spliceoso...,28,11,5.23,0.00889,0.0092
+GO:0006888,endoplasmic reticulum to Golgi vesicle-m...,168,44,31.39,0.00997,0.01

@@ -1,6 +1,6 @@
 
 # files
-modules_path <- "../results/networks/mcl_p0.6_i2.7.mcl.formated.csv"
+modules_path <- "../results/networks/abs_mcl_sorghum_p0.6_i2.7.mcl.formated.csv"
 vst_path <- "../results/matrices/sorghum_RUVr_k1_vst_counts.tsv"
 metadata_path <-"../data/sorghum_metadata.csv"
 
@@ -74,7 +74,7 @@ df <- vst[names$gene,]
 colnames(df) <- colnames(vst)
 rownames(anot) <- colnames(df)
 # heat map with ean values for column i.e media por modulo
-png(paste0("../results/heatmaps/sorghum/", "heatmap_samples_module_", i, ".png", sep = ""), res = 300, width = 2*1200, height = 2*2850)
+png(paste0("../results/heatmaps/sorghum/abs/", "heatmap_samples_module_", i, ".png", sep = ""), res = 300, width = 2*1200, height = 2*2850)
 pheatmap(df,
          main =paste0("Sorghum Module ",i , sep = ""),
          scale = "row",
@@ -91,12 +91,12 @@ dev.off()
 }
 
 
-numCores <- 25
-mclapply(dynamicMods$module, make_heatmap_sorghum , mc.cores = numCores)
+numCores <- 100
+mclapply(modules$module_No, make_heatmap_sorghum , mc.cores = numCores)
 
 ## make heatmaps from eigen genes
 
-module_list <- read.table("../results/correlation_analysis/cor_sorghum_sweet_rho80_padj001.csv", header = T, sep = ",")
+module_list <- read.table("../results/correlation_analysis/abs/abs_cor_sorghum_sweet_rho80_padj001.csv", header = T, sep = ",")
 make_heatmaps_eigengen <- function(module){
 df <- vst[modules[modules$module_No == module,]$gene,]
 names <- modules[modules$module_No == module,]
@@ -117,30 +117,31 @@ for (module in module_list$Module) {
   results_list[[module]] <- result
 }
 
+
 ## anot row
+joined_results <- do.call(rbind, results_list)
 tmp <- pheatmap(joined_results, cluster_rows = T, cluster_cols = T, scale = "row")
 anot_row <- as.data.frame(cutree(tmp$tree_row, k = 2))
 colnames(anot_row) <- "cluster"
 
-joined_results <- do.call(rbind, results_list)
 colnames(joined_results) <- colnames(vst)
-write.table(joined_results, "../results/matrices/eigen_sorghum_cor_rho08.csv", col.names = T, row.names = T, sep = ",", quote = F)
-write.table(anot_row, "../results/correlation_analysis/clusters_correlated_modules_sorghum_rho08.csv", col.names = T, row.names = T, sep = ",", quote = F)
+write.table(joined_results, "../results/matrices/abs_eigen_sugarcane_cor_rho08.csv", col.names = T, row.names = T, sep = ",", quote = F)
+write.table(anot_row, "../results/correlation_analysis/abs/abs_clusters_correlated_modules_sugarcane_rho08.csv", col.names = T, row.names = T, sep = ",", quote = F)
 
 #png(paste0("../results/correlation_analysis/heatmap_eigen_cor_mod_sweet.png"), res = 300, width = 2.4*1200, height = 4200)
-png(paste0("../results/correlation_analysis/heatmap_sugarcane_eigen_cor_mod_sweet.png"), res = 300, width = 2.4*1200, height = 2000)
+png(paste0("../results/correlation_analysis/abs/abs_heatmap_sugarcane_eigen_cor_mod_sweet.png"), width = 2.2*1200, height = 1600, res = 300)
 pheatmap(joined_results,
          main = "",
          scale = "row",
          annotation_col = anot,
-         show_rownames = F,
+         show_rownames = T,
          show_colnames = F,
          annotation_colors = ann_colors,
          col = rev(scico(100, palette = 'roma')),
          cluster_cols = T,
 	 cutree_rows = 2,
          cluster_rows = T,
-         cellwidth = 2,
+         cellwidth = 3,
          cellheight = 5)
 #8
 dev.off()

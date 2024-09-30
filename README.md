@@ -95,9 +95,8 @@ plot_bbduk can plot the results from get_bbduk_results.sh
     - topGO.r makes overrepresentation test on each module
     - compare_modules.r make overrepresentation analyisis of groups genes of modules correlated to sugar-fiber trait
 
-12. Compare the correlated modules in sugarcane and sorghum
-    - compare_modules.r Detect orthologues genes in correlated modules in sugarcane and sorghum and the expression group in which they are
-    - compare_modules.r Detect transcription factors in orthologues genes correlated to sugar-fiber trait in sorghum and sugarcane
+12. Comparatve transcription factor analysis
+    - comparative_tf.r detect transcription factors correlated to sugar-fiber trait and see if familias of tf conserve expression pattern through species.
 
 ## Results
 
@@ -146,10 +145,10 @@ Correlations distribution in Sorghum
 
 6. Find modules
 
-   - See modules in results/networks/mcl_cane_p0.6_i2.7.mcl.formated.csv for sugarcane and results/networks/mcl_p0.6_i2.7.mcl.formated.csvfor sorghum
+   - See modules in results/networks/abs_mcl_cane_p0.6_i2.7.mcl.formated.csv for sugarcane and results/networks/abc_mcl_p0.6_i2.7.mcl.formated.csvfor sorghum
 
 7. Correlation analysis for modules
-   - Table for correlated modules for sugarcane results/networks/cor_sugarcane_sweet_rho80_padj001.csv and for sorghum results/correlation_analysis/cor_sorghum_sweet_rho80_padj001.csv
+   - Table for correlated modules for sugarcane results/networks/abs_cor_sugarcane_sweet_rho80_padj001.csv and for sorghum results/correlation_analysis/abs_cor_sorghum_sweet_rho80_padj001.csv
 
 8. Annotate data 
    - GO annotations: For sugarcane data/GO_sugarcane/GO_cane_formated.txt, for sorghum results/panzzer/GO_formated.txt
@@ -161,27 +160,36 @@ Correlations distribution in Sorghum
 10. Make heatmaps of expression data
  
 Sorghum correated modules eigengene
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/heatmap_sorghum_eigen_cor_mod_sweet.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/abs/abs_heatmap_sorghum_eigen_cor_mod_sweet.png?raw=true)
 
 Sugarcane correlated modules eigengene
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/heatmap_sugarcane_eigen_cor_mod_sweet.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/abs/abs_heatmap_sugarcane_eigen_cor_mod_sweet.png?raw=true)
 
 11. Enrichment analysis
-    - Enrichment analysis for sorghum modules: results/GO_enrichment/sugarcane/modules, for sorghum: /home/dmpachon/jorge/comparative_cane/results/GO_enrichment/sorghum/modules
+   - Enrichment analysis for sorghum modules: results/GO_enrichment/abs/sugarcane/modules, for sorghum: /home/dmpachon/jorge/comparative_cane/results/GO_enrichment/abs/sorghum/modules
+     group 1: low expressed in sugar genotpypes
+     group 2: high expressed in sugar genotypes		
+  
 
 for gene group 1 in sorghum
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group1_sorghum_GO.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/group1_sorghum_GO.png?raw=true)
 
 for gene group 2 in sorghum
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group2_sorghum_GO.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/group2_sorghum_GO.png?raw=true)
 
 for gene group 1 in sugarcane
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group1_sugarcane_GO.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/group1_sugarcane_GO.png?raw=true)
 
 for gene group 2 in sugarcane
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/correlation/group2_sugarcane_GO.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/group2_sugarcane_GO.png?raw=true)
 
-12. Compare the correlated modules in sugarcane and sorghum
+12. Comparative transcription factor analisys: expression patterns
+Conserved families
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/conserved_tf_families.png?raw=true)
+
+Not conserved families
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/not_conserved_tf_families.png?raw=true)
 
 ## Installation
+
 You can find yml configuration files for conda envs in conda_envs directory

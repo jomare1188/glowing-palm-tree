@@ -9,9 +9,9 @@ colnames(orthogroups)[colnames(orthogroups) == "Gene"] <- "gene"
 
 # Sorghum
 # read cor genes from sorghum
-sorghum_table <- read.table("../results/correlation_analysis/cor_sorghum_sweet_rho80_padj001.csv", header = T, sep = ",")
+sorghum_table <- read.table("../results/correlation_analysis/abs/abs_cor_sorghum_sweet_rho80_padj001.csv", header = T, sep = ",")
 # read modules table for sorghum
-modules_sorghum <- read.table("../results/networks/mcl_p0.6_i2.7.mcl.formated.csv", col.names = c("gene", "module"))
+modules_sorghum <- read.table("../results/networks/abs_mcl_p0.6_i2.7.mcl.formated.csv", col.names = c("gene", "module"))
 # get the modules correlated 
 sorghum_cor_genes_and_modules <- modules_sorghum %>% filter(module %in% sorghum_table$Module)
 # merge correlated modules with orthogroups table
@@ -19,8 +19,8 @@ sorghum_cor_OG_table <- merge(sorghum_cor_genes_and_modules, orthogroups, by = "
 
 # Sugarcane
 # read cor genes from sugarcane
-sugarcane_table <- read.table("../results/correlation_analysis/cor_sugarcane_sweet_rho80_padj001.csv", header = T, sep = "," )
-modules_sugarcane <- read.table("../results/networks/mcl_cane_p0.6_i2.7.mcl.formated.csv", col.names = c("gene", "module"))
+sugarcane_table <- read.table("../results/correlation_analysis/abs/abs_cor_sugarcane_sweet_rho80_padj001.csv", header = T, sep = "," )
+modules_sugarcane <- read.table("../results/networks/abs_mcl_cane_p0.6_i2.7.mcl.formated.csv", col.names = c("gene", "module"))
 # get the modules correlated 
 sugarcane_cor_genes_and_modules <- modules_sugarcane %>% filter(module %in% sugarcane_table$Module)
 # merge correlated modules with orthogroups table
@@ -28,13 +28,13 @@ sugarcane_cor_OG_table <- merge(sugarcane_cor_genes_and_modules, orthogroups, by
 # ??
 # making full table with orthologues correlated genes 
 test <- sorghum_cor_OG_table %>% filter(Orthogroup %in% sugarcane_cor_OG_table$Orthogroup)
-clusters_expattern_sorghum <- read.table("../results/correlation_analysis/clusters_correlated_modules_sorghum_rho08.csv", header = T, sep = ",")
+clusters_expattern_sorghum <- read.table("../results/correlation_analysis/abs/abs_clusters_correlated_modules_sorghum_rho08.csv", header = T, sep = ",")
 clusters_expattern_sorghum$module <- sub("module_", "", rownames(clusters_expattern_sorghum))
 tmp <- merge(test, clusters_expattern_sorghum, by = "module")
 sorghum_rich_table <- tmp %>% select(gene, Orthogroup, Species, module, cluster)
 
 test2 <- sugarcane_cor_OG_table %>% filter(Orthogroup %in% sorghum_cor_OG_table$Orthogroup)
-clusters_expattern_sugarcane <- read.table("../results/correlation_analysis/clusters_correlated_modules_sugarcane_rho08.csv", header = T, sep = ",")
+clusters_expattern_sugarcane <- read.table("../results/correlation_analysis/abs/abs_clusters_correlated_modules_sugarcane_rho08.csv", header = T, sep = ",")
 clusters_expattern_sugarcane$module <- sub("module_", "", rownames(clusters_expattern_sugarcane))
 tmp <- merge(test2, clusters_expattern_sugarcane, by = "module")
 sugarcane_rich_table <- tmp %>% select(gene, Orthogroup, Species, module, cluster)
@@ -46,9 +46,9 @@ result_comparative <- full_cor_table %>%
   summarize(different_clusters = sum(cluster != cluster[1]))
 ## See in which expression pattern cluster are the orthologues in sugarcane and sorghum
 table(result_comparative$different_clusters)/sum(table(result_comparative$different_clusters))
-# 54 OG have the genes from sorghum and sugcarcane in the same cluster
-# 62 OG have one gene from another cluster
-# 3 OG have two genes from differents cluster
+# 12 OG have the genes from sorghum and sugcarcane in the same cluster
+# 22 OG have one gene from another cluster
+# 2 OG have two genes from differents cluster
 
 ## See in which groups are orthologues tf
 tf_sugarcane <- read.table("../results/tf_annot/sugarcane/tf_formatted_sugarcane.txt", header = T)
@@ -168,11 +168,11 @@ library(ggplot2)
 library(tidyverse)
 library(parallel)
 library(clusterProfiler)
-results_path_cluster <-"/home/dmpachon/jorge/comparative_cane/results/correlation_analysis/"
+#results_path_cluster <-"/home/dmpachon/jorge/comparative_cane/results/correlation_analysis/"
 dir.create(results_path_cluster)
 
-#GO <- read.table("/home/dmpachon/jorge/comparative_cane/data/GO_sugarcane/GO_cane_formated.txt", header=FALSE, stringsAsFactors=FALSE)
-GO <- read.table("/home/dmpachon/jorge/comparative_cane/results/panzzer/GO_formated.txt", header=FALSE, stringsAsFactors=FALSE)
+GO <- read.table("/home/dmpachon/jorge/comparative_cane/data/GO_sugarcane/GO_cane_formated.txt", header=FALSE, stringsAsFactors=FALSE)
+#GO <- read.table("/home/dmpachon/jorge/comparative_cane/results/panzzer/GO_formated.txt", header=FALSE, stringsAsFactors=FALSE)
 
 
 # Rename columns if necessary (assuming your data has two columns)
@@ -190,12 +190,12 @@ gene2GO <- strsplit(formatted_GO$GO_term , " ")
 names(gene2GO) <- formatted_GO$Gene
 
 #
-corr_mods <- read.table("../results/correlation_analysis/clusters_correlated_modules_sorghum_rho08.csv", header = T, , sep = ",")
+corr_mods <- read.table("../results/correlation_analysis/abs/abs_clusters_correlated_modules_sugarcane_rho08.csv", header = T, , sep = ",")
 corr_mods$module <- sub("module_", "", rownames(corr_mods))
 
 corr_mods <- corr_mods %>% filter(cluster == 2)
 
-dynamicMods <- read.table(file = "../results/networks/mcl_p0.6_i2.7.mcl.formated.csv", header = F, row.names=1)
+dynamicMods <- read.table(file = "../results/networks/abs_mcl_cane_p0.6_i2.7.mcl.formated.csv", header = F, row.names=1)
 colnames(dynamicMods) <- "module_No"
 geneNames <- rownames(dynamicMods)
 
@@ -230,9 +230,9 @@ results.table.p = all_res_final[which(all_res_final$Classic <=0.01),]
 # Get list of significant GO after multiple testing correction
 results.table.bh = all_res_final[which(all_res_final$p.adj<=0.01),]
 # Save first top 50 ontolgies sorted by adjusted pvalues
-write.table(results.table.bh, file = "../results/GO_enrichment/correlation/group2_sorghum_GO.csv", quote=FALSE, row.names=FALSE, sep = ",")
+write.table(results.table.bh, file = "../results/GO_enrichment/abs/correlation/group2_sugarcane_GO.csv", quote=FALSE, row.names=FALSE, sep = ",")
 
-ntop <- 20
+ntop <- 22
 
 ggdata <- results.table.bh[1:ntop,]
 ggdata <- ggdata[complete.cases(ggdata), ]
@@ -245,7 +245,6 @@ ggdata$p.adj <- as.numeric(ggdata$p.adj)
 
 ggdata <- ggdata[order(ggdata$p.adj),]
 ggdata$Lterm <- factor(ggdata$Lterm, levels = rev(ggdata$Lterm)) # fixes order
-
 gg1 <- ggplot(ggdata, aes(x = Lterm, y = -log10(p.adj) ))+
   geom_point(size = 6, colour = "black") +
   scale_size(range = c(2.5,12.5)) +
@@ -254,5 +253,5 @@ gg1 <- ggplot(ggdata, aes(x = Lterm, y = -log10(p.adj) ))+
   labs(title = 'GO Biological processes')+
   theme_bw(base_size = 24) +
   coord_flip()
-ggsave("../results/GO_enrichment/correlation/group2_sorghum_GO.png", device = "png", width = 40, height = 30, dpi = 300, units = "cm")
+ggsave("../results/GO_enrichment/abs/correlation/group2_sugarcane_GO.png", device = "png", width = 40, height = 30, dpi = 300, units = "cm")
 

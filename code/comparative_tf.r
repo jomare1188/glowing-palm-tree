@@ -16,7 +16,6 @@ metadata_path_sorghum <- "../data/sorghum_metadata.csv"
 sample_table_sorghum <- read.table(metadata_path_sorghum, sep = ",", header = T)
 sample_table_sugarcane <- read.table(metadata_path_sugarcane, sep = ",", header = T)
 
-# only for sugarcae
 colnames(sample_table_sugarcane)[2] <- "Cultivar"
 # make groups
 
@@ -188,6 +187,38 @@ ggsave(filename = "/home/dmpachon/jorge/comparative_cane/results/correlation_ana
 #  mutate(group = ifelse(different_clusters == 0, "Conserved", "Not Conserved"))
 
 
+library(igraph)
+library(readr)
+
+# Read the TSV file
+adjacency_data <- read_tsv("../results/networks/abs_triplets_p60_sorghum_fancy.tsv", 
+                           col_names = c("from", "to", "weight"))
+
+# Create an igraph object
+graph <- graph_from_data_frame(adjacency_data, directed = FALSE)
+
+# Step 1: Create a set of your selected genes
+selected_genes <- full_all %>% filter(Species.y == "Sorghum") %>% select(gene)
+# Replace with your actual list of genes
+
+# Step 1: Get the indices of the selected genes in the graph
+selected_vertices <- V(graph)[name %in% selected_genes$gene]
+
+# Step 2: Find all neighbors of the selected genes at distance 1
+# Including the selected genes themselves
+neighbors_list <- neighborhood(graph, order = 1, nodes = selected_vertices)
+
+# Step 3: Flatten the list of neighbors into a single vector of vertex IDs
+neighbors_vertices <- unique(unlist(neighbors_list))
+
+# Step 4: Create the subgraph induced by the selected genes and their neighbors
+subgraph <- induced_subgraph(graph, vids = selected_vertices)
+
+# Step 5: View basic information about the subgraph
+print(subgraph)
+
+
+write_graph(subgraph, file = "subgraph_sorghum_orthogonal_correlated_tf_gephi.graphml", format = "graphml")
 
 
 
@@ -196,4 +227,22 @@ ggsave(filename = "/home/dmpachon/jorge/comparative_cane/results/correlation_ana
 
 
 
+
+
+
+
+
+
+
+# Step 2: Find all neighbors at distance 1
+selected_indices <- which(V(graph)$name %in% selected_genes)
+
+# Step 2: Find all neighbors at distance 1
+neighbor_indices <- unique(unlist(lapply(selected_indices, function(i) neighbors(graph, i))))
+
+# Combine selected genes and their neighbors
+all_indices <- unique(c(selected_indices, neighbor_indices))
+
+# Step 3: Create the subgraph
+subgraph <- induced_subgraph(graph, all_indices)
 
