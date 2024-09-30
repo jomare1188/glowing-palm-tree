@@ -148,7 +148,7 @@ ggplot(not_conserved_tf_families, aes(x = reorder(Family, -Genes) , y = Genes)) 
         panel.grid.minor = element_blank(),
         axis.line = element_line(colour = "black"))
 
-ggsave(filename = "/home/dmpachon/jorge/comparative_cane/results/correlation_analysis/not_conserved_tf_families.png" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
+ggsave(filename = "/home/dmpachon/jorge/comparative_cane/results/correlation_analysis/not_conserved_tf_families.svg" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
 
 
 ggplot(conserved_tf_families, aes(x = reorder(Family, -Genes) , y = Genes)) +

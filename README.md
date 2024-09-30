@@ -184,6 +184,11 @@ for gene group 2 in sugarcane
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/group2_sugarcane_GO.png?raw=true)
 
 12. Comparative transcription factor analisys: expression patterns
+
+Orthologues TAP correlation sign across species
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/stacked_bar_comparative_tf.png?raw=true)
+
+
 Conserved families
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/conserved_tf_families.png?raw=true)
 
