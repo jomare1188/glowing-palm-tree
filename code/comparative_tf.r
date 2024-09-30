@@ -125,7 +125,7 @@ ggplot(full_df, aes(x = factor(Orthogroup, levels=unique(Orthogroup)), y = Posit
 
 ggsave(filename = "/home/dmpachon/jorge/comparative_cane/results/correlation_analysis/stacked_bar_comparative_tf.svg" ,units = "cm", width = 15*1.3, height = 15, dpi = 320, limitsize = F)
 
-full_all <- merge(full_df, full, by = "Orthogroup")
+full_all <- merge(full_df, full, by = "Orthogroup") %>% select (-Species.x)
 # this gives you the frequency of the tf families in the genes of the "conserved" and "not conserved orthologues tf"
 # Conserved are the genes in an OG which share the same sign (+/-) of the correlation coefficient in both species 
 not_conserved_tf_families <- data.frame(full_all %>% filter(group != "Conserved") %>% select(Family) %>% table())
@@ -135,10 +135,11 @@ colnames(not_conserved_tf_families) <- c("Family", "Genes")
 conserved_tf_families <- as.data.frame(full_all %>% filter(group == "Conserved") %>% select(Family) %>% table())
 colnames(conserved_tf_families) <- c("Family", "Genes")
 
+write.table(full_all, "/home/dmpachon/jorge/comparative_cane/results/correlation_analysis/classification_TAP_families.csv", sep = ",", header = T, quote = F, rownames = F)
 
 ggplot(not_conserved_tf_families, aes(x = reorder(Family, -Genes) , y = Genes)) +
   geom_bar(stat = "identity", position = "stack", fill = "black") +
-  labs(x = "TF Family", y = "Genes") +
+  labs(x = "TAP Family", y = "Genes") +
   theme_bw() +
   theme(text = element_text(family = "Times", size=16),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, color = "black"),
@@ -152,7 +153,7 @@ ggsave(filename = "/home/dmpachon/jorge/comparative_cane/results/correlation_ana
 
 ggplot(conserved_tf_families, aes(x = reorder(Family, -Genes) , y = Genes)) +
   geom_bar(stat = "identity", position = "stack", fill = "black") +
-  labs(x = "TF Family", y = "Genes") +
+  labs(x = "TAP Family", y = "Genes") +
   theme_bw() +
   theme(text = element_text(family = "Times", size=16),
         axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, color = "black"),

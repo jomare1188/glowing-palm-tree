@@ -81,7 +81,7 @@
 <text transform='translate(452.94,285.90) rotate(-90)' text-anchor='end' style='font-size: 12.80px; font-family: "DejaVu Serif";' textLength='26.78px' lengthAdjust='spacingAndGlyphs'>SBP</text>
 <text transform='translate(491.01,285.90) rotate(-90)' text-anchor='end' style='font-size: 12.80px; font-family: "DejaVu Serif";' textLength='26.63px' lengthAdjust='spacingAndGlyphs'>SET</text>
 <text transform='translate(529.09,285.90) rotate(-90)' text-anchor='end' style='font-size: 12.80px; font-family: "DejaVu Serif";' textLength='115.86px' lengthAdjust='spacingAndGlyphs'>SWI/SNF-BAF60b</text>
-<text x='295.97' y='416.16' text-anchor='middle' style='font-size: 16.00px; font-family: "DejaVu Serif";' textLength='80.86px' lengthAdjust='spacingAndGlyphs'>TF Family</text>
+<text x='295.97' y='416.16' text-anchor='middle' style='font-size: 16.00px; font-family: "DejaVu Serif";' textLength='91.20px' lengthAdjust='spacingAndGlyphs'>TAP Family</text>
 <text transform='translate(17.14,143.22) rotate(-90)' text-anchor='middle' style='font-size: 16.00px; font-family: "DejaVu Serif";' textLength='50.23px' lengthAdjust='spacingAndGlyphs'>Genes</text>
 </g>
 </svg>
