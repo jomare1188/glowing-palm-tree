@@ -167,7 +167,9 @@ Sugarcane correlated modules eigengene
 
 11. Enrichment analysis
    - Enrichment analysis for sorghum modules: results/GO_enrichment/abs/sugarcane/modules, for sorghum: /home/dmpachon/jorge/comparative_cane/results/GO_enrichment/abs/sorghum/modules
+
      group 1: low expressed in sugar genotpypes
+
      group 2: high expressed in sugar genotypes		
   
 
@@ -186,7 +188,7 @@ for gene group 2 in sugarcane
 12. Comparative transcription factor analisys: expression patterns
 
 Orthologues TAP correlation sign across species
-![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/GO_enrichment/abs/correlation/stacked_bar_comparative_tf.png?raw=true)
+![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/correlation_analysis/stacked_bar_comparative_tf.png?raw=true)
 
 
 Conserved families
