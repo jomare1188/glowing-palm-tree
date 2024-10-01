@@ -140,8 +140,18 @@ after batch effects correction we ended up with 147418 genes in sugarcane and 76
 Correlations distribution in Sugarcane 	
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/networks/histogram_sugarcane_cor_.png?raw=true)
 
+140833 vertices
+29233350 edges
+0.02105017 clustering coefficient (transitivity)
+21 connected components
+
 Correlations distribution in Sorghum
 ![alt text](https://github.com/jomare1188/glowing-palm-tree/blob/master/results/networks/histogram_sorghum_cor_.png?raw=true)
+
+76047 vertices
+58469192 edges
+0.1591881 transitivity
+1 connected components
 
 6. Find modules
 
