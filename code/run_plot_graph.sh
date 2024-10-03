@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=plot_network
+#SBATCH --job-name=ok_plot
 #SBATCH --partition=long
 #SBATCH --ntasks-per-node=10
 #SBATCH --mem=300G

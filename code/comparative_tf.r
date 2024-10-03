@@ -38,8 +38,12 @@ gene_correlation_trait_sugarcane <- cor(t(vst_sugarcane), sweet_sugarcane, metho
 gene_correlation_trait_sorghum.pvalue <- corPvalueStudent(gene_correlation_trait_sorghum, ncol(vst_sorghum))
 gene_correlation_trait_sugarcane.pvalue <- corPvalueStudent(gene_correlation_trait_sugarcane, ncol(vst_sugarcane))
 
-raw_sorghum <- data.frame(rho=gene_correlation_trait_sorghum, p = gene_correlation_trait_sorghum.pvalue, gene = rownames(gene_correlation_trait_sorghum))
-raw_sugarcane <- data.frame(rho = gene_correlation_trait_sugarcane, p= gene_correlation_trait_sugarcane.pvalue, gene = rownames(gene_correlation_trait_sugarcane))
+raw_sorghum <- data.frame(rho=gene_correlation_trait_sorghum, p = gene_correlation_trait_sorghum.pvalue, gene = rownames(gene_correlation_trait_sorghum), species = "sorghum")
+raw_sugarcane <- data.frame(rho = gene_correlation_trait_sugarcane, p= gene_correlation_trait_sugarcane.pvalue, gene = rownames(gene_correlation_trait_sugarcane), species = "sugarcane")
+
+raw_all <- rbind(raw_sorghum, raw_sugarcane)
+
+write.table(raw_all, "../results/correlation_analysis/all_genes_cor.csv",  row.names = F, col.names = T, quote = F, sep = ",")
 
 filtered_gene_correlation_trait_sorghum <- raw_sorghum %>% filter (p < 0.01 & abs(rho) > 0.8)
 filtered_gene_correlation_trait_sugarcane <- raw_sugarcane %>% filter (p < 0.01 & abs(rho) > 0.8)
@@ -192,11 +196,21 @@ library(igraph)
 library(readr)
 
 # Read the TSV file
-adjacency_data <- read_tsv("../results/networks/abs_triplets_p60_sorghum_fancy.tsv", 
+adjacency_data <- read_tsv("../results/networks/abs_triplets_p60_cane_fancy.tsv", 
                            col_names = c("from", "to", "weight"))
 
 # Create an igraph object
 graph <- graph_from_data_frame(adjacency_data, directed = FALSE)
+graph <- simplify(graph)
+# Calculate connected components
+comps <- components(graph)
+# Select only the largest connected component (or iterate over components as needed)
+# For example, we take the largest component for simplicity
+largest_comp <- which.max(comps$csize)
+subgraph <- induced_subgraph(graph, which(comps$membership == largest_comp))
+transitivity(subgraph)
+
+
 
 # Step 1: Create a set of your selected genes
 selected_genes <- full_all %>% filter(Species.y == "Sorghum") %>% select(gene)
@@ -223,27 +237,29 @@ write_graph(subgraph, file = "subgraph_sorghum_orthogonal_correlated_tf_gephi.gr
 
 
 
+##
+library(igraph)
+library(readr)
 
+# Read the TSV file
+adjacency_data <- read_tsv("../results/networks/abs_triplets_p60_cane_fancy.tsv",
+                           col_names = c("from", "to", "weight"))
 
+# Create an igraph object
+graph <- simplify(graph_from_data_frame(adjacency_data, directed = FALSE))
 
+# Assume your graph is already loaded as 'graph'
+# For example: graph <- graph_from_data_frame(adjacency_data, directed = FALSE)
 
+# Get the edge list with weights (if any)
+edge_list <- as.data.frame(get.edgelist(graph, names = FALSE))
+edge_weights <- E(graph)$weight  # If there are weights, otherwise assign uniform weights
 
+# Create an edge list with node indices starting from 0 (for LargeVis)
+edge_list$weight <- edge_weights
 
+# Convert edge list to k-NN format for LargeVis (node1 node2 weight ...)
+knn_format <- aggregate(edge_list$V2 ~ edge_list$V1, data = edge_list, FUN = function(x) paste(x, collapse=" "))
 
-
-
-
-
-
-# Step 2: Find all neighbors at distance 1
-selected_indices <- which(V(graph)$name %in% selected_genes)
-
-# Step 2: Find all neighbors at distance 1
-neighbor_indices <- unique(unlist(lapply(selected_indices, function(i) neighbors(graph, i))))
-
-# Combine selected genes and their neighbors
-all_indices <- unique(c(selected_indices, neighbor_indices))
-
-# Step 3: Create the subgraph
-subgraph <- induced_subgraph(graph, all_indices)
-
+# Write the output in LargeVis format to a file
+writeLines(paste(knn_format$`edge_list$V1`, knn_format$`edge_list$V2`), "graph_for_largevis_sorghum.txt")
